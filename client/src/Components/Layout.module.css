@@ -1,0 +1,96 @@
+
+.handleflex
+{
+   display: flex;
+
+}
+.handleflex2{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.page
+{
+   background-color: #f9f9f9;
+   width: 100%;
+}
+
+.drawer{
+width: 20%;
+}
+
+.drawerpaper{
+   width: 20%;
+}
+
+.formwidth{
+   width: 70%;
+
+   margin: 5px;
+}
+
+.handlecontainer{
+display: flex;
+justify-content: center;
+
+}
+
+.active{
+   background-color: #e2dcdc !important;
+}
+
+.paddingtitle{
+   padding: 15px;
+}
+
+
+.appbar{
+   width: 80% !important;
+   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
+}
+
+.justspacing{
+   margin-top: 80px;
+}
+
+.avatarhandle{
+
+   margin-right: 20px;
+
+   
+}
+
+
+.cardborder{
+   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
+}
+
+.drawerheader{
+         background-color: #f4f4f4;
+}
+
+@media only screen and (max-width: 600px) {
+
+   .drawer{
+      width: 25%;
+      }
+      
+      .drawerpaper{
+         width: 25%;
+      }
+      .classforresponsive1{
+  display: none;
+      }
+
+      .appbar{
+         width: 75% !important;
+      }
+
+      .formwidth{
+         width: 90%;
+      
+         margin: 5px;
+      }
+   
+ }
