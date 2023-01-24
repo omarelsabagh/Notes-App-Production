@@ -9,9 +9,9 @@ dotenv_1.default.config();
 //destructing env variables
 const { POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, PG_PORT } = process.env;
 const devComfig = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${PG_PORT}/${POSTGRES_DB}`;
-const proConfig = process.env.DATABASE_URL;
+const proConfig = `postgresql://postgres:wSWSLYYdfItGeqZsFBfH@containers-us-west-99.railway.app:7593/railway`;
 //creating connection
 const Client = new pg_1.Pool({
-    connectionString: devComfig,
+    connectionString: proConfig,
 });
 exports.default = Client;

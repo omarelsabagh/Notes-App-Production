@@ -20,7 +20,7 @@ exports.app.use(function (_req, res, next) {
     next();
 });
 //env variable for the port
-const port = process.env.PORT || 5000;
+const port = 7593 || 5000;
 // allRoutes file in routes folder
 (0, allRoutes_1.fetchAllRoutes)(exports.app);
 exports.app.get('*', (_req, res) => {
