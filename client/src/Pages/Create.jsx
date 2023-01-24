@@ -37,7 +37,7 @@ export default function Create() {
             setDetailsError(true);
         }
         if (title && details) {
-            const result = await axios.post('notes-app-production-production.up.railway.app/notes', {
+            const result = await axios.post('/notes', {
                 title: title,
                 details: details,
                 category:category
