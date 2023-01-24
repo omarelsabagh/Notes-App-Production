@@ -37,7 +37,7 @@ export default function Create() {
             setDetailsError(true);
         }
         if (title && details) {
-            const result = await axios.post('https://notes-app-production-matrialui.herokuapp.com/notes', {
+            const result = await axios.post('http://localhost:5000/notes', {
                 title: title,
                 details: details,
                 category:category

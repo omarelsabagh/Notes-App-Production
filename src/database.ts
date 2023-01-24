@@ -17,7 +17,7 @@ const devComfig = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES
 const proConfig =  process.env.DATABASE_URL
 //creating connection
 const Client = new Pool({
-    connectionString:proConfig,
+    connectionString:devComfig,
 });
 
 export default Client;

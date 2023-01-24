@@ -10,14 +10,14 @@ export default function Notes() {
     const [notes, setNotes] = useState([]);
 
     const getNotes = async () => {
-        const { data } = await axios.get('https://notes-app-production-matrialui.herokuapp.com/notes');
+        const { data } = await axios.get('http://localhost:5000/notes');
         sessionStorage.setItem('notes', JSON.stringify(data.allnotes));
         setNotes(JSON.parse(sessionStorage.getItem('notes')));
     };
 
     const deleteOneNote = async (id) => {
          await axios.delete(
-            `https://notes-app-production-matrialui.herokuapp.com/notes/${id}`
+            `http://localhost:5000/notes/${id}`
         );
         const newNotes = notes.filter(note => note.id !== id)
         sessionStorage.setItem('notes', JSON.stringify(newNotes));
