@@ -20,7 +20,7 @@ app.use(function(_req, res, next) {
   });
 //env variable for the port
 
-const port = process.env.PGPORT || 5000;
+const port = process.env.PORT || 5000;
 
 // allRoutes file in routes folder
 fetchAllRoutes(app);
