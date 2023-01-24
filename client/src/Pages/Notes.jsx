@@ -10,14 +10,14 @@ export default function Notes() {
     const [notes, setNotes] = useState([]);
 
     const getNotes = async () => {
-        const { data } = await axios.get('http://localhost:5000/notes');
+        const { data } = await axios.get('notes-app-production-production.up.railway.app/notes');
         sessionStorage.setItem('notes', JSON.stringify(data.allnotes));
         setNotes(JSON.parse(sessionStorage.getItem('notes')));
     };
 
     const deleteOneNote = async (id) => {
          await axios.delete(
-            `http://localhost:5000/notes/${id}`
+            `notes-app-production-production.up.railway.app/notes/${id}`
         );
         const newNotes = notes.filter(note => note.id !== id)
         sessionStorage.setItem('notes', JSON.stringify(newNotes));
