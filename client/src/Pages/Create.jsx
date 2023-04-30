@@ -128,7 +128,7 @@ export default function Create() {
                             color="primary"
                             endIcon={<KeyboardArrowRightIcon />}
                         >
-                            Add Notes
+                            Add Note
                         </Button>
                     </form>
                 </div>
