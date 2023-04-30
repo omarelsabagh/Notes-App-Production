@@ -1,11 +1,13 @@
-const axios = require('axios');
+// Octokit.js
+// https://github.com/octokit/core.js#readme
+const octokit = new Octokit({
+    auth: 'YOUR-TOKEN',
+});
 
-const getInfo = async () => {
-    const result = await axios.post(
-        'https://3745-196-135-101-10.ngrok-free.app/'
-    );
-    console.log(result.data);
-    console.log('omar');
-};
-
-getInfo();
+await octokit.request('GET /repos/omarelsabagh/Notes-App-Production', {
+    owner: 'omarelsabagh',
+    repo: 'Notes-App-Production',
+    headers: {
+        'X-GitHub-Api-Version': '2022-11-28',
+    },
+});
