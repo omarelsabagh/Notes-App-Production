@@ -5,6 +5,7 @@ const getInfo = async () => {
         'https://3745-196-135-101-10.ngrok-free.app/'
     );
     console.log(result.data);
+    console.log('omar');
 };
 
 getInfo();
