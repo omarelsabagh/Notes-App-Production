@@ -7,6 +7,7 @@ exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors = require('cors');
+const eventsource_1 = __importDefault(require("eventsource"));
 const path_1 = __importDefault(require("path"));
 const core_1 = require("@octokit/core");
 const webhooks_1 = require("@octokit/webhooks");
@@ -15,6 +16,19 @@ const strinog = 'sdass';
 const webhooks = new webhooks_1.Webhooks({
     secret: 'zaclouds-test-secret',
 });
+const webhookProxyUrl = 'https://a75a-102-44-13-115.ngrok-free.app/'; // replace with your own Webhook Proxy URL
+const source = new eventsource_1.default(webhookProxyUrl);
+source.onmessage = (event) => {
+    const webhookEvent = JSON.parse(event.data);
+    webhooks
+        .verifyAndReceive({
+        id: webhookEvent['x-request-id'],
+        name: webhookEvent['x-github-event'],
+        signature: webhookEvent['x-hub-signature'],
+        payload: webhookEvent.body,
+    })
+        .catch(console.error);
+};
 webhooks.onAny(({ id, name, payload }) => {
     console.log(name, 'event received');
 });
@@ -30,7 +44,6 @@ exports.app.use(function (_req, res, next) {
     next();
 });
 //env variable for the port
-exports.app.use((0, webhooks_1.createNodeMiddleware)(webhooks));
 const port = process.env.PORT || 80;
 // allRoutes file in routes folder
 (0, allRoutes_1.fetchAllRoutes)(exports.app);
