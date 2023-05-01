@@ -1,9 +1,8 @@
 const { Webhooks, createNodeMiddleware } = require('@octokit/webhooks');
 const webhooks = new Webhooks({
-    secret: 'mysecret',
+    secret: 'zaclouds-test-secret',
 });
 
-console.log('lol');
 webhooks.onAny(({ id, name, payload }) => {
     console.log(name, 'event received');
 });
