@@ -22,10 +22,11 @@ source.onmessage = (event) => {
             payload: webhookEvent.body,
         })
         .catch(console.error);
+    webhooks.onAny(({ id, name, payload }) => {
+        console.log(name, 'event received');
+    });
 };
-webhooks.onAny(({ id, name, payload }) => {
-    console.log(name, 'event received');
-});
+
 dotenv.config();
 
 import { fetchAllRoutes } from './routes/allRoutes';
