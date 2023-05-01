@@ -19,7 +19,6 @@ const webhooks = new webhooks_1.Webhooks({
 const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your own Webhook Proxy URL
 const source = new eventsource_1.default(webhookProxyUrl);
 source.onmessage = (event) => {
-    console.log(event.data);
     const webhookEvent = event.data;
     webhooks
         .verifyAndReceive({
@@ -29,9 +28,9 @@ source.onmessage = (event) => {
         payload: webhookEvent.body,
     })
         .catch(console.error);
-    webhooks.onAny(({ id, name, payload }) => {
-        console.log(name, 'event received');
-    });
+    // webhooks.onAny(({ id, name, payload }) => {
+    //     console.log(name, 'event received');
+    // });
 };
 dotenv_1.default.config();
 const allRoutes_1 = require("./routes/allRoutes");
