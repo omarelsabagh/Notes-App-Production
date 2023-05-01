@@ -18,7 +18,6 @@ webhooks.onAny(({ id, name, payload }) => {
     console.log(name, 'event received');
 });
 dotenv_1.default.config();
-(0, webhooks_1.createNodeMiddleware)(webhooks);
 const allRoutes_1 = require("./routes/allRoutes");
 exports.app = (0, express_1.default)();
 exports.app.use((0, webhooks_1.createNodeMiddleware)(webhooks));
