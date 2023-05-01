@@ -3,17 +3,16 @@ import dotenv from 'dotenv';
 const cors = require('cors');
 import EventSource from 'eventsource';
 import path from 'path';
-import { Octokit } from '@octokit/core';
-import { Webhooks, createNodeMiddleware } from '@octokit/webhooks';
-const octokit = new Octokit();
-const strinog = 'sdass';
+
+import { Webhooks } from '@octokit/webhooks';
+
 const webhooks = new Webhooks({
     secret: 'zaclouds-test-secret',
 });
 const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your own Webhook Proxy URL
 const source = new EventSource(webhookProxyUrl);
 source.onmessage = (event) => {
-    const webhookEvent = event.data;
+    const webhookEvent = JSON.parse(event.data);
 
     webhooks
         .verifyAndReceive({
@@ -23,9 +22,6 @@ source.onmessage = (event) => {
             payload: webhookEvent.body,
         })
         .catch(console.error);
-    // webhooks.onAny(({ id, name, payload }) => {
-    //     console.log(name, 'event received');
-    // });
 };
 
 dotenv.config();
