@@ -11,6 +11,7 @@ const path_1 = __importDefault(require("path"));
 const core_1 = require("@octokit/core");
 const webhooks_1 = require("@octokit/webhooks");
 const octokit = new core_1.Octokit();
+const strinog = 'sdas';
 const webhooks = new webhooks_1.Webhooks({
     secret: 'zaclouds-test-secret',
 });
