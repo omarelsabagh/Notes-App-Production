@@ -1,28 +1,24 @@
 import express from 'express';
 import dotenv from 'dotenv';
 const cors = require('cors');
-const path = require('path');
-const { Octokit } = require('@octokit/core');
+import path from 'path';
+import { Octokit } from '@octokit/core';
+import { Webhooks, createNodeMiddleware } from '@octokit/webhooks';
 const octokit = new Octokit();
 
-const asyncFunc = async () => {
-    const response = await octokit.request('GET /repos/{owner}/{repo}', {
-        owner: 'omarelsabagh',
-        repo: 'Notes-App-Production',
-        headers: {
-            'X-GitHub-Api-Version': '2022-11-28',
-        },
-    });
-    console.log(response);
-};
-
-asyncFunc();
+const webhooks = new Webhooks({
+    secret: 'zaclouds-test-secret',
+});
+webhooks.onAny(({ id, name, payload }) => {
+    console.log(name, 'event received');
+});
 dotenv.config();
+createNodeMiddleware(webhooks);
 
 import { fetchAllRoutes } from './routes/allRoutes';
 
 export const app: express.Application = express();
-
+app.use(createNodeMiddleware(webhooks));
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(cors());

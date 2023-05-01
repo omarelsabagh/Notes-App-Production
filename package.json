@@ -26,6 +26,7 @@
   "license": "ISC",
   "dependencies": {
     "@octokit/core": "^4.2.0",
+    "@octokit/webhooks": "^11.0.0",
     "axios": "^1.4.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
