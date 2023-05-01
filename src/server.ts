@@ -3,9 +3,10 @@ import dotenv from 'dotenv';
 const cors = require('cors');
 import EventSource from 'eventsource';
 import path from 'path';
-
-import { Webhooks } from '@octokit/webhooks';
-
+import { Octokit } from '@octokit/core';
+import { Webhooks, createNodeMiddleware } from '@octokit/webhooks';
+const octokit = new Octokit();
+const strinog = 'sdass';
 const webhooks = new Webhooks({
     secret: 'zaclouds-test-secret',
 });
@@ -13,15 +14,19 @@ const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your
 const source = new EventSource(webhookProxyUrl);
 source.onmessage = (event) => {
     const webhookEvent = JSON.parse(event.data);
+    console.log(webhookEvent.body);
 
-    webhooks
-        .verifyAndReceive({
-            id: webhookEvent['x-request-id'],
-            name: webhookEvent['x-github-event'],
-            signature: webhookEvent['x-hub-signature'],
-            payload: webhookEvent.body,
-        })
-        .catch(console.error);
+    // webhooks
+    //     .verifyAndReceive({
+    //         id: webhookEvent['x-request-id'],
+    //         name: webhookEvent['x-github-event'],
+    //         signature: webhookEvent['x-hub-signature'],
+    //         payload: webhookEvent.body,
+    //     })
+    //     .catch(console.error);
+    // webhooks.onAny(({ id, name, payload }) => {
+    //     console.log(name, 'event received');
+    // });
 };
 
 dotenv.config();
