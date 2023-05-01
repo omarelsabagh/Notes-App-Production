@@ -11,7 +11,7 @@ const path_1 = __importDefault(require("path"));
 const core_1 = require("@octokit/core");
 const webhooks_1 = require("@octokit/webhooks");
 const octokit = new core_1.Octokit();
-const strinog = 'sdas';
+const strinog = 'sdass';
 const webhooks = new webhooks_1.Webhooks({
     secret: 'zaclouds-test-secret',
 });
@@ -21,7 +21,6 @@ webhooks.onAny(({ id, name, payload }) => {
 dotenv_1.default.config();
 const allRoutes_1 = require("./routes/allRoutes");
 exports.app = (0, express_1.default)();
-exports.app.use((0, webhooks_1.createNodeMiddleware)(webhooks));
 exports.app.use(express_1.default.static(path_1.default.join(__dirname, '../client/build')));
 exports.app.use(cors());
 exports.app.use(function (_req, res, next) {
@@ -31,7 +30,8 @@ exports.app.use(function (_req, res, next) {
     next();
 });
 //env variable for the port
-const port = process.env.PORT || 5000;
+exports.app.use((0, webhooks_1.createNodeMiddleware)(webhooks));
+const port = process.env.PORT || 80;
 // allRoutes file in routes folder
 (0, allRoutes_1.fetchAllRoutes)(exports.app);
 exports.app.get('*', (_req, res) => {
