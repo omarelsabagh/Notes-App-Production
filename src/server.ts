@@ -3,22 +3,20 @@ import dotenv from 'dotenv';
 const cors = require('cors');
 const path = require('path');
 const { Octokit } = require('@octokit/core');
-const octokit = new Octokit({
-    auth: 'zaclouds-test-secret',
-});
+const octokit = new Octokit();
 
-const result = await octokit.request(
-    'GET /repos/omarelsabagh/Notes-App-Production',
-    {
+const asyncFunc = async () => {
+    const response = await octokit.request('GET /repos/{owner}/{repo}', {
         owner: 'omarelsabagh',
         repo: 'Notes-App-Production',
         headers: {
             'X-GitHub-Api-Version': '2022-11-28',
         },
-    }
-);
+    });
+    console.log(response);
+};
 
-console.log(result.data);
+asyncFunc();
 dotenv.config();
 
 import { fetchAllRoutes } from './routes/allRoutes';
