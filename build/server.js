@@ -11,28 +11,35 @@ const eventsource_1 = __importDefault(require("eventsource"));
 const path_1 = __importDefault(require("path"));
 const core_1 = require("@octokit/core");
 const webhooks_1 = require("@octokit/webhooks");
+const ngrok_1 = __importDefault(require("ngrok"));
 const octokit = new core_1.Octokit();
-const strinog = 'sdasssssss';
+const strinog = 'sdass';
 const webhooks = new webhooks_1.Webhooks({
     secret: 'zaclouds-test-secret',
 });
-const webhookProxyUrl = 'https://ffd8-102-43-9-80.ngrok-free.app '; // replace with your own Webhook Proxy URL
-const source = new eventsource_1.default(webhookProxyUrl);
-source.onmessage = (event) => {
-    const webhookEvent = JSON.parse(event.data);
-    console.log(webhookEvent.body);
-    // webhooks
-    //     .verifyAndReceive({
-    //         id: webhookEvent['x-request-id'],
-    //         name: webhookEvent['x-github-event'],
-    //         signature: webhookEvent['x-hub-signature'],
-    //         payload: webhookEvent.body,
-    //     })
-    //     .catch(console.error);
-    // webhooks.onAny(({ id, name, payload }) => {
-    //     console.log(name, 'event received');
-    // });
-};
+(async function () {
+    const url = await ngrok_1.default.connect({
+        authtoken: '2P8tl86whdpApYFuEUpi2xzwofi_3PYmgvRhGQUYneoCwxhM5',
+    });
+    console.log(url);
+    const source = new eventsource_1.default(url);
+    source.onmessage = (event) => {
+        const webhookEvent = JSON.parse(event.data);
+        console.log(webhookEvent.body);
+        // webhooks
+        //     .verifyAndReceive({
+        //         id: webhookEvent['x-request-id'],
+        //         name: webhookEvent['x-github-event'],
+        //         signature: webhookEvent['x-hub-signature'],
+        //         payload: webhookEvent.body,
+        //     })
+        //     .catch(console.error);
+        // webhooks.onAny(({ id, name, payload }) => {
+        //     console.log(name, 'event received');
+        // });
+    };
+})();
+// const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your own Webhook Proxy URL
 dotenv_1.default.config();
 const allRoutes_1 = require("./routes/allRoutes");
 exports.app = (0, express_1.default)();
