@@ -22,7 +22,7 @@ const webhooks = new webhooks_1.Webhooks({
     console.log(url);
     // console.log(url);
     // const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your own Webhook Proxy URL
-    const source = new eventsource_1.default(url);
+    const source = new eventsource_1.default(`${url}`);
     console.log(source);
     source.onmessage = (event) => {
         const webhookEvent = JSON.parse(event.data);
