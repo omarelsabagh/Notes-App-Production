@@ -5,35 +5,28 @@ import EventSource from 'eventsource';
 import path from 'path';
 import { Octokit } from '@octokit/core';
 import { Webhooks, createNodeMiddleware } from '@octokit/webhooks';
-import ngrok from 'ngrok';
 const octokit = new Octokit();
-const strinog = 's';
+const strinog = 'sdasssssss';
 const webhooks = new Webhooks({
     secret: 'zaclouds-test-secret',
 });
-(async function () {
-    const url = await ngrok.connect(80);
-    console.log(url);
-
-    // console.log(url);
-    // const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your own Webhook Proxy URL
-    const source = new EventSource(url);
-    source.onmessage = (event) => {
-        const webhookEvent = JSON.parse(event.data);
-        console.log(webhookEvent.body);
-        // webhooks
-        //     .verifyAndReceive({
-        //         id: webhookEvent['x-request-id'],
-        //         name: webhookEvent['x-github-event'],
-        //         signature: webhookEvent['x-hub-signature'],
-        //         payload: webhookEvent.body,
-        //     })
-        //     .catch(console.error);
-        // webhooks.onAny(({ id, name, payload }) => {
-        //     console.log(name, 'event received');
-        // });
-    };
-})();
+const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your own Webhook Proxy URL
+const source = new EventSource(webhookProxyUrl);
+source.onmessage = (event) => {
+    const webhookEvent = JSON.parse(event.data);
+    console.log(webhookEvent.body);
+    // webhooks
+    //     .verifyAndReceive({
+    //         id: webhookEvent['x-request-id'],
+    //         name: webhookEvent['x-github-event'],
+    //         signature: webhookEvent['x-hub-signature'],
+    //         payload: webhookEvent.body,
+    //     })
+    //     .catch(console.error);
+    // webhooks.onAny(({ id, name, payload }) => {
+    //     console.log(name, 'event received');
+    // });
+};
 
 dotenv.config();
 
