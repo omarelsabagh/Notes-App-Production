@@ -6,7 +6,7 @@ import path from 'path';
 import { Octokit } from '@octokit/core';
 import { Webhooks, createNodeMiddleware } from '@octokit/webhooks';
 const octokit = new Octokit();
-const strinog = 'sdass';
+const strinog = 'sdasss';
 const webhooks = new Webhooks({
     secret: 'zaclouds-test-secret',
 });
@@ -15,7 +15,6 @@ const source = new EventSource(webhookProxyUrl);
 source.onmessage = (event) => {
     const webhookEvent = JSON.parse(event.data);
     console.log(webhookEvent.body);
-
     // webhooks
     //     .verifyAndReceive({
     //         id: webhookEvent['x-request-id'],
