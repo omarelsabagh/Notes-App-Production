@@ -6,7 +6,7 @@ import path from 'path';
 import { Octokit } from '@octokit/core';
 import { Webhooks, createNodeMiddleware } from '@octokit/webhooks';
 const octokit = new Octokit();
-const strinog = 'sdassssss';
+const strinog = 'sdasssssss';
 const webhooks = new Webhooks({
     secret: 'zaclouds-test-secret',
 });
