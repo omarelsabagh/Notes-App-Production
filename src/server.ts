@@ -7,7 +7,7 @@ import { Octokit } from '@octokit/core';
 import { Webhooks, createNodeMiddleware } from '@octokit/webhooks';
 import ngrok from 'ngrok';
 const octokit = new Octokit();
-const strinog = 'sdass';
+const strinog = 'sdasss';
 const webhooks = new Webhooks({
     secret: 'zaclouds-test-secret',
 });
