@@ -16,7 +16,7 @@ const strinog = 'sdasssssss';
 const webhooks = new webhooks_1.Webhooks({
     secret: 'zaclouds-test-secret',
 });
-const webhookProxyUrl = 'https://smee.io/61l4lZyfL9u7CYRG'; // replace with your own Webhook Proxy URL
+const webhookProxyUrl = 'https://ffd8-102-43-9-80.ngrok-free.app '; // replace with your own Webhook Proxy URL
 const source = new eventsource_1.default(webhookProxyUrl);
 source.onmessage = (event) => {
     const webhookEvent = JSON.parse(event.data);
